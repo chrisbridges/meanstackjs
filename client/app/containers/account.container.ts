@@ -7,7 +7,7 @@ import { UserService, AlertService } from '../services';
   template: `
     <div class="container">
       <h2>Profile Information</h2>
-      <form class="form-account" [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+      <form class="form-account" [formGroup]="accountForm" (ngSubmit)="updateProfile()">
         <div class="form-group row">
           <label for="account-email" class="col-form-label col-sm-2">Email</label>
           <div class="col-sm-6">
@@ -47,7 +47,22 @@ import { UserService, AlertService } from '../services';
             <input type="text" class="form-control" id="account-website">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</button>
+        <div class="form-group row">
+          <div class="col-sm-4 offset-sm-2">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i> Update Profile</button>
+          </div>
+        </div>
+      </form>
+      <form class="api-token-form" [formGroup]="apiTokenForm">
+        <div class="form-group row">
+          <label for="api-token" class="col-form-label col-sm-2">API Token</label>
+          <textarea class="form-control col-sm-6" id="api-token" rows="5" disabled="disabled"></textarea>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 offset-sm-2">
+            <button type="submit" class="btn btn-info"><i class="fa fa-refresh"></i> Refresh API Token</button>
+          </div>
+        </div>
       </form>
     </div>
   `
@@ -66,7 +81,11 @@ export class AccountContainer implements OnInit {
     // TODO: grab current account values and fill inputs accordingly
   }
 
-  onSubmit () {
+  updateProfile () {
     // TODO: if values have changed, make PUT request
+  }
+
+  refreshToken () {
+    // TODO: refresh API Token
   }
 }
