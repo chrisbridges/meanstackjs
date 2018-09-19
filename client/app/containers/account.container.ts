@@ -12,7 +12,6 @@ import { UserService, AlertService } from '../services';
           <label for="account-email" class="col-form-label col-sm-2">Email</label>
           <div class="col-sm-6">
             <input type="email" class="form-control" id="account-email" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
         </div>
         <div class="form-group row">
@@ -21,15 +20,20 @@ import { UserService, AlertService } from '../services';
             <input type="text" class="form-control" id="account-name">
           </div>
         </div>
-        <div class="form-check row">
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-          <label class="form-check-label" for="exampleRadios1">
-            Male
-          </label>
-          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-          <label class="form-check-label" for="exampleRadios2">
-            Female
-          </label>
+        <div class="row">
+          <legend class="col-form-label col-sm-2">Gender</legend>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Male
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Female
+            </label>
+          </div>
         </div>
         <div class="form-group row">
           <label for="account-location" class="col-form-label col-sm-2">Location</label>
