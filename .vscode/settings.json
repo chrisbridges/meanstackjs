@@ -4,7 +4,7 @@
   "standard.run":"onSave",
   "standard.usePackageJson": true,
   "standard.autoFixOnSave":true,
-  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.colorTheme": "Default Dark+",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
   "editor.tabSize": 2,
