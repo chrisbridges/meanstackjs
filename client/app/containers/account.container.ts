@@ -80,18 +80,18 @@ export class AccountContainer implements OnInit {
     private alertService: AlertService
   ) {}
 
-  get USER () { return this.userService.USER }
+  get USER_PROFILE () { return this.userService.USER.user.profile }
 
   ngOnInit () {
     // TODO: grab current account values and fill inputs accordingly
     console.log(this.userProfile)
     this.accountForm = this.formBuilder.group({
       // safe operator not needed here since default value is '' ?
-      email: [this.USER.user.email],
-      name: [this.USER.user.profile.name],
-      location: [this.USER.user.profile.location],
-      website: [this.USER.user.profile.website],
-      gender: [this.USER.user.profile.gender]
+      email: [this.userService.USER.user.email],
+      name: [this.USER_PROFILE.name],
+      location: [this.USER_PROFILE.location],
+      website: [this.USER_PROFILE.website],
+      gender: [this.USER_PROFILE.gender]
     })
   }
 
