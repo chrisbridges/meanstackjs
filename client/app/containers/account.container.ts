@@ -11,13 +11,13 @@ import { UserService, AlertService } from '../services';
         <div class="form-group row">
           <label for="account-email" class="col-form-label col-sm-2">Email</label>
           <div class="col-sm-6">
-            <input type="email" class="form-control" id="account-email" aria-describedby="emailHelp">
+            <input type="email" class="form-control" formControlName="email" id="account-email" aria-describedby="emailHelp">
           </div>
         </div>
         <div class="form-group row">
           <label for="account-name" class="col-form-label col-sm-2">Name</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="account-name">
+            <input type="text" class="form-control" formControlName="name" id="account-name">
           </div>
         </div>
         <div class="row">
@@ -38,13 +38,13 @@ import { UserService, AlertService } from '../services';
         <div class="form-group row">
           <label for="account-location" class="col-form-label col-sm-2">Location</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="account-location">
+            <input type="text" class="form-control" formControlName="location" id="account-location">
           </div>
         </div>
         <div class="form-group row">
           <label for="account-website" class="col-form-label col-sm-2">Website</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="account-website">
+            <input type="text" class="form-control" formControlName="website" id="account-website">
           </div>
         </div>
         <div class="form-group row">
@@ -53,7 +53,7 @@ import { UserService, AlertService } from '../services';
           </div>
         </div>
       </form>
-      <form class="api-token-form" [formGroup]="apiTokenForm">
+      <form class="api-token-form" [formGroup]="apiTokenForm" (ngSubmit)="refreshToken()">
         <div class="form-group row">
           <label for="api-token" class="col-form-label col-sm-2">API Token</label>
           <textarea class="form-control col-sm-6" id="api-token" rows="5" disabled="disabled"></textarea>
@@ -70,6 +70,9 @@ import { UserService, AlertService } from '../services';
 
 export class AccountContainer implements OnInit {
   accountForm: FormGroup
+  apiTokenForm: FormGroup // abstract API Form into another component?
+  // TODO: should I create a model for user profiles?
+  userProfile = localStorage.getItem('user')
 
   constructor (
     private formBuilder: FormBuilder,
@@ -77,8 +80,19 @@ export class AccountContainer implements OnInit {
     private alertService: AlertService
   ) {}
 
+  get USER () { return this.userService.USER }
+
   ngOnInit () {
     // TODO: grab current account values and fill inputs accordingly
+    console.log(this.userProfile)
+    this.accountForm = this.formBuilder.group({
+      // safe operator not needed here since default value is '' ?
+      email: [this.USER.user.email],
+      name: [this.USER.user.profile.name],
+      location: [this.USER.user.profile.location],
+      website: [this.USER.user.profile.website],
+      gender: [this.USER.user.profile.gender]
+    })
   }
 
   updateProfile () {
