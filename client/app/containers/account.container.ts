@@ -56,7 +56,7 @@ import { UserService, AlertService } from '../services';
       <form class="api-token-form" [formGroup]="apiTokenForm" (ngSubmit)="refreshToken()">
         <div class="form-group row">
           <label for="api-token" class="col-form-label col-sm-2">API Token</label>
-          <textarea class="form-control col-sm-6" id="api-token" rows="5" disabled="disabled"></textarea>
+          <textarea class="form-control col-sm-6" formControlName="apiToken" id="api-token" rows="5" disabled></textarea>
         </div>
         <div class="form-group row">
           <div class="col-sm-4 offset-sm-2">
@@ -71,7 +71,6 @@ import { UserService, AlertService } from '../services';
 export class AccountContainer implements OnInit {
   accountForm: FormGroup
   apiTokenForm: FormGroup // abstract API Form into another component?
-  // TODO: should I create a model for user profiles?
   userProfile = localStorage.getItem('user')
 
   constructor (
@@ -83,7 +82,6 @@ export class AccountContainer implements OnInit {
   get USER_PROFILE () { return this.userService.USER.user.profile }
 
   ngOnInit () {
-    // TODO: grab current account values and fill inputs accordingly
     console.log(this.userProfile)
     this.accountForm = this.formBuilder.group({
       // safe operator not needed here since default value is '' ?
@@ -92,6 +90,10 @@ export class AccountContainer implements OnInit {
       location: [this.USER_PROFILE.location],
       website: [this.USER_PROFILE.website],
       gender: [this.USER_PROFILE.gender]
+    })
+
+    this.apiTokenForm = this.formBuilder.group({
+      apiToken: [this.userService.USER.token]
     })
   }
 
